@@ -1,4 +1,5 @@
 import logging
+import secrets
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request, status
@@ -38,8 +39,8 @@ app = FastAPI(
     ),
     lifespan=lifespan,
     # sem Swagger em produção pra não publicar o mapa da API
-    docs_url=None if settings.is_production else "/docs",
-    redoc_url=None if settings.is_production else "/redoc",
+    docs_url=None,
+    redoc_url=None,
     openapi_url=None if settings.is_production else "/openapi.json",
 )
 
@@ -54,15 +55,23 @@ app.add_middleware(
 
 @app.middleware("http")
 async def security_headers(request: Request, call_next):
+    nonce = secrets.token_urlsafe(24)
+    request.state.csp_nonce = nonce
     response = await call_next(request)
+    docs = request.url.path in {"/docs", "/redoc"} and not settings.is_production
+    external = " https://cdn.jsdelivr.net" if docs else ""
+    response.headers["Content-Security-Policy"] = (
+        "default-src 'none'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; "
+        f"script-src 'self' 'nonce-{nonce}'{external}; "
+        f"style-src 'self' 'nonce-{nonce}'{external}; "
+        "img-src 'self' data:; connect-src 'self'; font-src 'self'; form-action 'self'"
+    )
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "no-referrer"
     response.headers["Cache-Control"] = "no-store"
-    if settings.is_production:
-        response.headers["Strict-Transport-Security"] = (
-            "max-age=31536000; includeSubDomains"
-        )
+    # HSTS só é efetivado pelo navegador em HTTPS; TLS é obrigatório em produção.
+    response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
     return response
 
 
@@ -90,3 +99,18 @@ async def unhandled_exception_handler(request: Request, exc: Exception):
 
 
 app.include_router(api_router)
+
+
+if not settings.is_production:
+    from fastapi.openapi.docs import get_swagger_ui_html
+    from fastapi.responses import HTMLResponse, RedirectResponse
+
+    @app.get("/docs", include_in_schema=False)
+    async def swagger(request: Request):
+        html = get_swagger_ui_html(openapi_url=app.openapi_url, title="Fintech Guard - Swagger", swagger_favicon_url="/favicon.ico").body.decode()
+        return HTMLResponse(html.replace("<script>", f'<script nonce="{request.state.csp_nonce}">'))
+
+    @app.get("/redoc", include_in_schema=False)
+    async def redoc(request: Request):
+        # Uma única interface compatível com a CSP; mantém o endereço antigo.
+        return RedirectResponse('/docs')

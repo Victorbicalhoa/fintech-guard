@@ -1,31 +1,19 @@
 from datetime import datetime, timezone
+from sqlalchemy import Column, DateTime, String
+from sqlmodel import SQLModel, Field
 
-from sqlalchemy import DateTime, Float, Integer, String
-from sqlalchemy.orm import Mapped, mapped_column
+class PredictionLog(SQLModel, table=True):
+    """Histórico: guarda hash e comprimento, nunca o texto da mensagem.
 
-from app.db.session import Base
-
-
-def _utcnow() -> datetime:
-    return datetime.now(timezone.utc)
-
-
-class PredictionLog(Base):
-    """Trilha das classificações feitas no /predict.
-
-    Guarda o hash da mensagem e não o texto, pra manter a rastreabilidade sem
-    criar mais um lugar com CPF e saldo dentro.
+    username preserva a ownership histórica. Não há renomeação/reutilização
+    de usuários nesta API; uma futura alteração exigirá migração para owner_id.
     """
-
     __tablename__ = "prediction_logs"
-
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    username: Mapped[str] = mapped_column(String(64), index=True, nullable=False)
-    message_hash: Mapped[str] = mapped_column(String(64), nullable=False)
-    message_length: Mapped[int] = mapped_column(Integer, nullable=False)
-    predicted_intent: Mapped[str] = mapped_column(String(64), nullable=False)
-    confidence: Mapped[float] = mapped_column(Float, nullable=False)
-    risk_level: Mapped[str] = mapped_column(String(16), nullable=False)
-    created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=_utcnow, index=True, nullable=False
-    )
+    id: int | None = Field(default=None, primary_key=True)
+    username: str = Field(sa_column=Column(String(64), index=True, nullable=False))
+    message_hash: str = Field(sa_column=Column(String(64), nullable=False))
+    message_length: int
+    predicted_intent: str = Field(sa_column=Column(String(64), nullable=False))
+    confidence: float
+    risk_level: str = Field(sa_column=Column(String(16), nullable=False))
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc), sa_column=Column(DateTime(timezone=True), index=True, nullable=False))

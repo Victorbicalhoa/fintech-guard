@@ -2,12 +2,13 @@ import logging
 from typing import Annotated
 
 from fastapi import APIRouter, Form, HTTPException, Request, status
+from sqlmodel import select
 
 from app.api.deps import CurrentUser, DbSession
 from app.core.config import get_settings
 from app.core.security import create_access_token, verify_password
 from app.models.user import User
-from app.schemas.auth import Token, UserPublic
+from app.schemas.auth import Token, UserPublic, LoginRequest
 from app.services import rate_limit
 
 logger = logging.getLogger(__name__)
@@ -22,9 +23,9 @@ def _client_key(request: Request) -> str:
 async def login_for_access_token(
     request: Request,
     db: DbSession,
-    username: Annotated[str, Form()],
-    password: Annotated[str, Form()],
+    payload: Annotated[LoginRequest, Form()],
 ) -> Token:
+    username, password = payload.username, payload.password
     settings = get_settings()
     key = _client_key(request)
 
@@ -37,7 +38,7 @@ async def login_for_access_token(
             detail="Muitas tentativas de login. Tente novamente mais tarde.",
         )
 
-    user = db.query(User).filter(User.username == username).first()
+    user = db.exec(select(User).where(User.username == username)).first()
 
     # usuário inexistente, senha errada e conta inativa dão a mesma resposta,
     # senão dá pra descobrir quem existe testando login

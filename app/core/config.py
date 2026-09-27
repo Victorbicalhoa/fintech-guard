@@ -1,4 +1,5 @@
 from functools import lru_cache
+from urllib.parse import urlsplit
 
 from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -44,6 +45,18 @@ class Settings(BaseSettings):
                 'python -c "import secrets; print(secrets.token_urlsafe(64))"'
             )
         return v
+
+    @field_validator("cors_origins")
+    @classmethod
+    def _explicit_origins(cls, value: str) -> str:
+        origins = [item.strip() for item in value.split(",") if item.strip()]
+        for origin in origins:
+            parsed = urlsplit(origin)
+            if ("*" in origin or parsed.scheme not in {"http", "https"}
+                    or not parsed.netloc or parsed.username or parsed.password
+                    or parsed.path or parsed.query or parsed.fragment):
+                raise ValueError("CORS exige origens HTTP(S) explícitas, sem caminhos ou curingas.")
+        return ",".join(origins)
 
 
 @lru_cache

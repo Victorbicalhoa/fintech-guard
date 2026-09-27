@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Token(BaseModel):
@@ -17,3 +17,13 @@ class UserPublic(BaseModel):
     username: str
     full_name: str | None = None
     role: str
+
+
+class LoginRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    username: str = Field(min_length=1, max_length=64)
+    password: str = Field(min_length=1)
+    grant_type: str | None = None
+    scope: str = ""
+    client_id: str | None = None
+    client_secret: str | None = None

@@ -1,4 +1,5 @@
 """Cria as tabelas e um usuário pra testar a API. Uso: python -m scripts.seed"""
+from sqlmodel import select
 
 from app.core.config import get_settings
 from app.core.security import hash_password
@@ -12,7 +13,7 @@ def main() -> None:
 
     with SessionLocal() as db:
         ja_existe = (
-            db.query(User).filter(User.username == settings.seed_username).first()
+            db.exec(select(User).where(User.username == settings.seed_username)).first()
         )
         if ja_existe:
             print(f"Usuário '{settings.seed_username}' já existe.")

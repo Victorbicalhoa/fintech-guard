@@ -1,6 +1,7 @@
 from enum import Enum
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
+from datetime import datetime
 
 
 class RiskLevel(str, Enum):
@@ -10,6 +11,7 @@ class RiskLevel(str, Enum):
 
 
 class PredictRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
     message: str = Field(
         min_length=1,
         max_length=1000,
@@ -32,8 +34,18 @@ class PredictRequest(BaseModel):
 
 
 class PredictResponse(BaseModel):
+    prediction_id: int | None = None
     intent: str = Field(description="Intenção prevista (taxonomia BANKING77).")
     confidence: float = Field(ge=0.0, le=1.0)
     risk_level: RiskLevel = Field(description="Risco de fraude/engenharia social.")
     model_version: str
     detail: str
+
+
+class PredictionRecord(BaseModel):
+    id: int
+    predicted_intent: str
+    confidence: float
+    risk_level: RiskLevel
+    message_length: int
+    created_at: datetime

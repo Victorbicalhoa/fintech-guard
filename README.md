@@ -12,7 +12,7 @@ regras simples, so para a rota ja funcionar.
 
 - API em FastAPI
 - rotas separadas em `app/api/routes/`
-- modelos SQLAlchemy em `app/models/`
+- modelos SQLModel em `app/models/`
 - banco SQLite local
 - autenticacao JWT com `OAuth2PasswordBearer`
 - EDA do BANKING77

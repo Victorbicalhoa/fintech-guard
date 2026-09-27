@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse, Response
 
 router = APIRouter(tags=["home"])
@@ -10,8 +10,8 @@ async def favicon() -> Response:
 
 
 @router.get("/", include_in_schema=False, response_class=HTMLResponse)
-async def home() -> str:
-    return """
+async def home(request: Request) -> str:
+    html = """
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -313,3 +313,5 @@ async def home() -> str:
 </body>
 </html>
 """
+
+    return html.replace("<script>", f'<script nonce="{request.state.csp_nonce}">').replace("<style>", f'<style nonce="{request.state.csp_nonce}">')
