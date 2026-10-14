@@ -31,3 +31,6 @@ verificar regressões não equivale a concluir a auditoria do TP3. Nenhum classi
 
 TP1 e TP2 continuam em suas pastas. Os CSVs originais e tratados não são modificados pelo TP3.
 O relatório `planejamento_T2.md` lista explicitamente campos ainda pendentes do plano conjunto.
+
+## Execução comprovada
+Notebook e 47 testes aprovados no GitHub Actions. Ver [resultado e limitações](resultado_validacao.md). O bloqueio local do Windows permanece; usar o workflow para reproduzir nesse contexto.
