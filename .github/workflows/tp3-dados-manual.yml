@@ -16,8 +16,8 @@ jobs:
     timeout-minutes: 20
     env:
       MPLBACKEND: Agg
-      MPLCONFIGDIR: ${{ runner.temp }}/matplotlib
-      IPYTHONDIR: ${{ runner.temp }}/ipython
+      MPLCONFIGDIR: /tmp/tp3-matplotlib
+      IPYTHONDIR: /tmp/tp3-ipython
       PYTHONUTF8: '1'
       OMP_NUM_THREADS: '1'
       OPENBLAS_NUM_THREADS: '1'
