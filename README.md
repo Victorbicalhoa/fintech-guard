@@ -12,6 +12,9 @@ análise exploratória dos dados, organizada por entrega (TP1, TP2 e TP3). Veja
 
 ## TP3: evidências para avaliação
 
+Revisão disponível no [PR #6](https://github.com/franciscocostadev/fintech-guard/pull/6). A [execução do PR](https://github.com/franciscocostadev/fintech-guard/actions/runs/43149334149)
+aprovou 95 testes no commit `8bdec52`. Confira o estado de integração e os checks da revisão mais recente na página do PR.
+
 O [índice específico do TP3](reports/TP3/README.md) organiza os requisitos e seus arquivos.
 A [conferência das 12 rubricas](reports/TP3/rubricas_TP3.md) identifica os oito itens apontados na avaliação e suas evidências.
 A [revisão do feedback de 11/11/2026](reports/TP3/revisao_feedback.md) diferencia a entrega

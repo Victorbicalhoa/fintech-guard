@@ -3,7 +3,8 @@
 Revisão: **11/11/2026**. Base integrada: [2f71cb7](https://github.com/franciscocostadev/fintech-guard/commit/2f71cb77f80a8d1e13f8738d3cd59bd20b67baff).
 A contribuição de Dados entrou na main pelo [PR #3](https://github.com/franciscocostadev/fintech-guard/pull/3),
 integrado em **23/10/2026**. A segurança foi integrada posteriormente pelo integrante B.
-A revisão de 11/11, conferida em 12/11, segue na branch `fix/tp3-feedback` para revisão por PR.
+A revisão de 11/11, conferida em 12/11, está no [PR #6](https://github.com/franciscocostadev/fintech-guard/pull/6), branch `fix/tp3-feedback`.
+O [CI do commit 8bdec52](https://github.com/franciscocostadev/fintech-guard/actions/runs/43149334149) aprovou 95 testes. Veja no PR os checks dos commits posteriores.
 Consulte a [conferência das 12 rubricas](rubricas_TP3.md), com a seleção original do Rubricator.
 
 ## Comece por estes arquivos
@@ -24,7 +25,7 @@ Consulte a [conferência das 12 rubricas](rubricas_TP3.md), com a seleção orig
 | Classes, distribuição e aprendizado supervisionado | [Pergunta de classificação](pergunta_classificacao.md) | 603 mensagens; seis classes; binária principal proposta: 171 benignas/432 ameaças |
 | Modelo candidato e feature engineering | Plano T2, seções 2–5 | TF-IDF + LogisticRegression; comparação com LinearSVC; divisão, métricas e contrato futuro |
 | Pelo menos cinco casos de segurança e aprovação da suíte atual | [pytest.txt](revisao_20261111/pytest.txt), [JUnit](revisao_20261111/pytest.xml) | 95 aprovados, zero falhas/erros/ignorados; 14 avisos de dependências |
-| GitHub Actions | [workflow](../../.github/workflows/security-tests.yml) e [run da main](https://github.com/franciscocostadev/fintech-guard/actions/runs/40040833325) | 95 testes aprovados no commit base; regras de merge documentadas pelo integrante B |
+| GitHub Actions | [workflow](../../.github/workflows/security-tests.yml) e [run da main](https://github.com/franciscocostadev/fintech-guard/actions/runs/40040833325) | 95 testes aprovados na base e no primeiro commit do PR #6; ruleset ativo reconferido em 12/11 |
 | Findings Medium/High | [Auditoria final](../../docs/auditoria-final-tp3.md) | Auditoria de 23/10: nenhum pendente; não foi realizado novo ZAP nesta revisão |
 | OpenAPI em execução | [JSON exportado](revisao_20261111/openapi.json) e [validação](revisao_20261111/openapi-validacao.json) | HTTP 200 em /docs e /openapi.json; cinco operações com contratos, referências resolvidas |
 | Adversário e URL/IP | Plano T2, seção 6; auditoria, seção 7 | **PENDENTE**, ainda não definidos pela dupla |

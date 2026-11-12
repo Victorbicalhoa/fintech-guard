@@ -1,11 +1,11 @@
 {
-  "README.md": "8e41c696990df90e7d46baf7efc35ed021042a4f02cecb0d9b3f94d1b4891f4b",
+  "README.md": "fa27a0d8c3475caa28b80a0d22c8c5fcc7d64eda937803a90723dbe1d3533b16",
   "notebooks/TP3/security/01_regressao_e_transicao.ipynb": "6f5b5ea0499f250a0f77a2ec84283a201b503abdff2b2e00d7c2b341fd4ffef4",
-  "reports/TP3/README.md": "16ba5bfe674d727f349a9d6b8318755e76427351c68a4fb37dfa48993afe7c6d",
-  "reports/TP3/estado_preparacao.md": "bedfe73dcb5e05f3abb847db2547417aded10b29e3b8ef0a19e81f738a78ca2b",
-  "reports/TP3/planejamento_T2.md": "a6b37201e0b883e655115a2e6d043b6973958a3124ae23c202d0f1ba9617de70",
-  "reports/TP3/publicacao_github.md": "e858c6ce20556bb12dbaa1f2cd6adb1d3dea6a2a7bbd67522ed0f9347adab244",
-  "reports/TP3/resultado_validacao.md": "941b2e12f6aa7c659999e83e5d50df6dd3ee3cf074f6df7f49d3540cfc561a12",
+  "reports/TP3/README.md": "9326ca83a6b4d58bb120e0b258ce65e39fa4da610045c0ae1b70638b7f962666",
+  "reports/TP3/estado_preparacao.md": "3bec9e33efe655b7a14be43e8c56cbfc3c35cd0bfca910e7f7a82d5dfac165b8",
+  "reports/TP3/planejamento_T2.md": "6af8aad2705074fcc276e2af513e84d73f71cb399a739c70d1114b1f149108dc",
+  "reports/TP3/publicacao_github.md": "a6592070fcca136f9d80d14a0b207166fa8e9a95e7bcb5a9dcde9203a691c93c",
+  "reports/TP3/resultado_validacao.md": "914662db8595702726b7f7d4350df40d7dfb0c0c2aee3fe5ee715f8184241776",
   "reports/TP3/revisao_20261111/README.md": "292889731957147f9dc05e33b3fa958f44584f107b1d94891f7ce720fec760f0",
   "reports/TP3/revisao_20261111/environment.txt": "9e60b1aec5c7cbc078b57293b6be75582e5f6a15e9012e0bb72d3ca7ce5c94a3",
   "reports/TP3/revisao_20261111/execution.json": "0ad9ef9c54a7460602ddcb82c94757cada89c03e08394d3fc1639cb2f5d87a52",
@@ -18,6 +18,7 @@
   "reports/TP3/revisao_20261111/validation.log": "fe6b0c9e19bd40030077055a5760629566aaef0fe765eb19f2d812e5cc410784",
   "reports/TP3/revisao_feedback.md": "fb8ab56834baedbae97e87372839cca993379a1b6a9edb7a81af36c50c9abf55",
   "reports/TP3/revisao_rubricas_20261112/ruleset-main.json": "3e2dd2f817fe0705058682ae3c50d5bb385530b46f6375da745332a063837650",
-  "reports/TP3/rubricas_TP3.md": "d539967216dc31e95b057c804eade990a713847a2b64ca6dc0a0b3eb497cffd6",
-  "scripts/verify_tp3_openapi.py": "9d30a8b8018fff3ed62210871e6d1f4968baa92aa79f5849ead03fdbec999f42"
+  "reports/TP3/rubricas_TP3.md": "31aa2fb7216ba4f31ecfeaedef36ca8037ba2ab72bf597c52e79ae02faa22d80",
+  "scripts/verify_tp3_openapi.py": "9d30a8b8018fff3ed62210871e6d1f4968baa92aa79f5849ead03fdbec999f42",
+  "reports/TP3/revisao_rubricas_20261112/ci-pr6.json": "24caa5b36f07e93114aedb0cd5361497a7f86f441497f346382e1fda743c9290"
 }

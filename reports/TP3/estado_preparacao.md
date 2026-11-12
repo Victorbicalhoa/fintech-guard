@@ -13,7 +13,10 @@ A construção dos pipelines e o cálculo de R²/RMSE agora estão explícitos n
 O plano T2 detalha a integração futura e preserva a separação entre ameaça no conteúdo
 e intenção de atendimento bancário. Nenhum classificador foi treinado.
 
-**Faltam:** revisar e integrar o PR da revisão; definir colega adversário e URL/IP;
+A revisão foi publicada no [PR #6](https://github.com/franciscocostadev/fintech-guard/pull/6). O [CI de 8bdec52](https://github.com/franciscocostadev/fintech-guard/actions/runs/43149334149) aprovou 95 testes.
+O estado de integração e a validação dos commits posteriores estão disponíveis no próprio PR.
+
+**Pendências de planejamento:** definir colega adversário e URL/IP;
 registrar autorização e janela de pentest; alinhar o contrato do classificador com o integrante B.
 Essas pendências impedem declarar a preparação adversária concluída.
 

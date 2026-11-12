@@ -13,7 +13,7 @@ avaliação e apresenta separadamente as evidências disponíveis após a revis�
 | 2 | R² e RMSE calculados e interpretados | Não demonstrou | Notebook, seção 4: cálculos explícitos; RMSE em caracteres; [métricas](regression/metrics.csv) |
 | 3 | Limitações da regressão para intenções | Não demonstrou | Notebook, seção 6: alvo contínuo, categorias nominais, códigos arbitrários, redundância estrutural e ausência de avaliação de classificação |
 | 4 | Cinco ou mais casos de segurança | Demonstrou | [Testes do TP3](../../tests/test_security_tp3.py): autenticação, BOLA, entradas inválidas e rate limiting |
-| 5 | GitHub Actions configurado e executado | Demonstrou | [Workflow](../../.github/workflows/security-tests.yml), push/PR; [run da base integrada](https://github.com/franciscocostadev/fintech-guard/actions/runs/40040833325). Novo PR deve apresentar seu próprio check |
+| 5 | GitHub Actions configurado e executado | Demonstrou | [Workflow](../../.github/workflows/security-tests.yml), push/PR; [run da base integrada](https://github.com/franciscocostadev/fintech-guard/actions/runs/40040833325). [PR #6](https://github.com/franciscocostadev/fintech-guard/pull/6) com [check aprovado em 8bdec52](https://github.com/franciscocostadev/fintech-guard/actions/runs/43149334149) |
 | 6 | Todos os testes passam com pytest tests/ -v | Não demonstrou | [Log completo](revisao_20261111/pytest.txt) e [JUnit](revisao_20261111/pytest.xml): 95 aprovados, zero falhas/erros/skips, 14 avisos de dependências |
 | 7 | Pergunta de classificação, classes e distribuição | Não demonstrou | [Pergunta](pergunta_classificacao.md) e [PDF](pergunta_classificacao.pdf): 603 mensagens, seis classes, proposta binária 171 benignas/432 ameaças |
 | 8 | Justificativa de ML supervisionado com base nos dados | Não demonstrou | Pergunta, seção de justificativa: rótulos disponíveis, informação textual, p ≈ 0,1912 do TP2 e limites da regressão contínua |
@@ -44,4 +44,7 @@ O alinhamento desse recorte e do contrato da API com B permanece explícito no p
 - Próximos passos: revisão e merge do novo PR pelo integrante B; definição do adversário,
   URL/IP e autorização; alinhamento do contrato antes de treinar e integrar o classificador.
 
-As evidências locais não substituem o check do commit do novo PR. Confira a aba Checks ao revisar.
+O [PR #6](https://github.com/franciscocostadev/fintech-guard/pull/6) tem evidência remota de **95 testes aprovados em 8bdec52**.
+O [registro do CI](revisao_rubricas_20261112/ci-pr6.json) vincula resultado e commit.
+Confira a aba Checks para a revisão mais recente. Em 12/11, o integrante A reconfirmou
+que adversário e URL/IP ainda não foram definidos; esse item permanece pendente.

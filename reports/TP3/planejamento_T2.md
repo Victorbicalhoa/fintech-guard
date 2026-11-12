@@ -1,5 +1,5 @@
 # Planejamento técnico de T2 - Dados e IA
-Integrante A | TP3 | Revisão: 11/11/2026 | Plano prospectivo, sem treinamento de classificador
+Integrante A | TP3 | Revisão: 12/11/2026 | Plano prospectivo, sem treinamento de classificador
 
 ## 1. Objetivo e decisão de classes
 Propor como tarefa principal benigno versus ameaça, com ameaça positiva, mantendo os seis
@@ -103,10 +103,10 @@ O [OpenAPI exportado](revisao_20261111/openapi.json) fixa o contrato observado n
 | Colega adversário | PENDENTE - nome e identificação a confirmar pela dupla |
 | URL/IP da API adversária | PENDENTE - não informado; não inferir a partir do GitHub |
 | Autorização, escopo e janela de pentest | PENDENTE - alinhar antes de qualquer teste adversarial |
-| Testes de segurança, workflow e proteção de merge | 95 testes aprovados na main e nesta revisão; workflow de segurança integrado. Proteção de merge documentada na auditoria de B |
+| Testes de segurança, workflow e proteção de merge | 95 testes aprovados na main e nesta revisão; workflow de segurança integrado. Proteção de merge reconferida em 12/11; o [CI de 8bdec52](https://github.com/franciscocostadev/fintech-guard/actions/runs/43149334149) também aprovou 95 testes |
 | Auditoria final, findings e OpenAPI | Auditoria de 23/10 disponível; OpenAPI reconferido por HTTP em 11/11. Novo scan não foi realizado |
 
-Adversário e URL/IP continuam não definidos, conforme alinhamento da dupla em 11/11/2026. Esses campos e a autorização impedem considerar o plano conjunto completo. A execução histórica de 47 testes
+Adversário e URL/IP continuam não definidos, conforme confirmação do integrante A em 12/11/2026. Esses campos e a autorização impedem considerar o plano conjunto completo. A execução histórica de 47 testes
 em 14/10/2026 está registrada em `resultado_validacao.md`; a revisão de 17/10 executou
 o notebook e aprovou 58 testes em Windows, com evidências próprias em `local_validation/`. Nenhum scan, ataque ou alteração de infraestrutura foi
 realizado nesta etapa de Dados.

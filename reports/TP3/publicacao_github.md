@@ -21,14 +21,21 @@ O PR foi aberto posteriormente e integrado; aquele bloqueio não é o estado atu
 - [Suíte integrada na main, 23/10](https://github.com/franciscocostadev/fintech-guard/actions/runs/40040833325):
   commit `2f71cb7`, **95 testes aprovados**, 14 avisos de dependências.
 
-## Revisão do feedback para novo PR
+## Revisão do feedback — PR #6
 
 A revisão de 11/11 explicita pipelines e métricas no notebook, organiza os requisitos em um
 índice, atualiza o planejamento e reúne nova validação de notebook, pytest e OpenAPI.
 A revisão segue na branch `fix/tp3-feedback` do fork, baseada na main integrada.
 O [comparativo da revisão](https://github.com/franciscocostadev/fintech-guard/compare/main...Victorbicalhoa:fintech-guard:fix/tp3-feedback)
 identifica os arquivos alterados. O PR #3 permanece como histórico da entrega original.
-Confira o estado de integração e os checks no novo PR antes de entregar ao Moodle.
+[PR #6](https://github.com/franciscocostadev/fintech-guard/pull/6): aberto com 22 arquivos alterados no primeiro commit, `8bdec52`.
+A [execução 43149334149](https://github.com/franciscocostadev/fintech-guard/actions/runs/43149334149) aprovou **95 testes**, sem falhas, com 14 avisos.
+O [registro do CI](revisao_rubricas_20261112/ci-pr6.json) identifica o commit efetivamente executado.
+
+Este fechamento acrescenta referências de publicação e reconfirma a pendência do adversário.
+A aprovação de `8bdec52` é uma evidência daquele commit: alterações documentais posteriores
+recebem seus próprios checks. O estado de integração e o SHA final devem ser consultados no PR
+antes da entrega ao Moodle.
 
 A revisão do feedback não permite identificar qual commit foi consultado pelo avaliador.
 O repositório informado é o do Francisco; não foram informados data ou snapshot da avaliação.
