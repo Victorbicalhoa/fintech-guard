@@ -1,5 +1,5 @@
 # Planejamento técnico de T2 - Dados e IA
-Integrante A | TP3 | Revisão: 17/10/2026 | Plano prospectivo, sem treinamento de classificador
+Integrante A | TP3 | Revisão: 12/11/2026 | Plano prospectivo, sem treinamento de classificador
 
 ## 1. Objetivo e decisão de classes
 Propor como tarefa principal benigno versus ameaça, com ameaça positiva, mantendo os seis
@@ -70,6 +70,31 @@ comprimento máximo (API: 1.000 caracteres na base atual; dataset: até 3.693), 
 latência. Não truncar silenciosamente. O modelo será suporte de triagem, sem liberar ações
 sensíveis por conta própria. Persistência, autenticação e controles da API são do integrante B.
 
+## 5.1 Arquitetura e contrato para alinhamento antes do TP4
+
+Fluxo planejado: textos rotulados → manifesto de divisão por grupos/classes →
+Pipeline(TF-IDF, LogisticRegression ou LinearSVC) → validação por classe →
+artefato versionado com vocabulário, classes e dependências → carregamento único na inicialização →
+inferência em mensagens novas. Não treinar dentro de uma requisição. Se LinearSVC for escolhido,
+seu decision_function não será apresentado como probabilidade: avaliar calibração somente no treino.
+
+A API integrada foi conferida na base `2f71cb7`:
+
+| Aspecto | Contrato atual | Decisão necessária |
+|---|---|---|
+| Entrada de POST /predict | message (1–1000 caracteres) e channel (chat, whatsapp, email, telefone); JWT | Preservar validação e decidir como tratar textos maiores, sem truncamento silencioso |
+| Saída | id, intent, confidence, risk_level, model_version, detail | Validar separadamente classes e score do modelo supervisionado |
+| intent | Descrito no OpenAPI como intenção BANKING77 | Não colocar benigno/ameaça nesse campo sem revisar o contrato |
+| risk_level | low, medium ou high | Não equivale automaticamente ao rótulo binário ameaça; definir regra e custos com B |
+| confidence | Número entre 0 e 1 | Especificar a previsão a que se refere e avaliar calibração |
+| Versionamento | model_version; implementação atual baseada em regras | Versionar pipeline, manifesto e métricas; definir falha segura para artefato ausente/incompatível |
+| Persistência | Hash da mensagem, sem texto bruto | Preservar proteção de dados e não gravar conteúdo sensível na análise de erros |
+
+A opção binária de segurança e o roteamento BANKING77 são tarefas separadas. A dupla deve
+decidir entre resultado adicional, endpoint próprio ou composição de modelos antes da integração;
+nenhuma mudança de schema ou de comportamento da API foi feita no TP3 de Dados.
+O [OpenAPI exportado](revisao_20261111/openapi.json) fixa o contrato observado nesta revisão.
+
 ## 6. Dependências do integrante B - campos obrigatórios do plano conjunto
 
 | Campo | Estado |
@@ -78,13 +103,15 @@ sensíveis por conta própria. Persistência, autenticação e controles da API 
 | Colega adversário | PENDENTE - nome e identificação a confirmar pela dupla |
 | URL/IP da API adversária | PENDENTE - não informado; não inferir a partir do GitHub |
 | Autorização, escopo e janela de pentest | PENDENTE - alinhar antes de qualquer teste adversarial |
-| Testes de segurança, workflow e proteção de merge | Integrante B - validar no TP3 integrado; workflow de Dados no fork não substitui CI de segurança |
-| Auditoria final, findings e OpenAPI | Integrante B - atualizar evidências da versão integrada |
+| Testes de segurança, workflow e proteção de merge | 95 testes aprovados na main e nesta revisão; workflow de segurança integrado. Proteção de merge reconferida em 12/11; o [CI de 8bdec52](https://github.com/franciscocostadev/fintech-guard/actions/runs/43149334149) também aprovou 95 testes |
+| Auditoria final, findings e OpenAPI | Auditoria de 23/10 disponível; OpenAPI reconferido por HTTP em 11/11. Novo scan não foi realizado |
 
-Esses campos impedem considerar o plano conjunto completo. A execução histórica de 47 testes
+Adversário e URL/IP continuam não definidos, conforme confirmação do integrante A em 12/11/2026. Esses campos e a autorização impedem considerar o plano conjunto completo. A execução histórica de 47 testes
 em 14/10/2026 está registrada em `resultado_validacao.md`; a revisão de 17/10 executou
 o notebook e aprovou 58 testes em Windows, com evidências próprias em `local_validation/`. Nenhum scan, ataque ou alteração de infraestrutura foi
 realizado nesta etapa de Dados.
+
+A revisão integrada de 11/11 aprovou 95 testes e está em [revisao_20261111/](revisao_20261111/).
 
 ## 7. Rastreabilidade e fontes
 Para cada experimento futuro: pergunta, hipótese, hash dos dados, manifesto, versões, seed,

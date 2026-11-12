@@ -1,5 +1,30 @@
 # Validação do TP3 — Dados e IA
 
+## Revisão atual: 11/11/2026
+
+A base integrada é `2f71cb7`. A nova execução aprovou **95 testes**, sem falhas ou
+casos ignorados, com 14 avisos de dependências. O notebook tem sete células executadas e três
+figuras; os cálculos explícitos nas células conferem com os CSVs e o verificador independente.
+As métricas numéricas anteriores permanecem válidas. /docs e /openapi.json responderam 200
+por HTTP local; as cinco operações expõem schemas de entrada/saída conforme aplicável.
+
+[Execução](revisao_20261111/execution.json), [pytest](revisao_20261111/pytest.txt),
+[JUnit](revisao_20261111/pytest.xml), [verificador](revisao_20261111/validation.json),
+[OpenAPI](revisao_20261111/openapi-validacao.json) e [índice](README.md).
+A entrega anterior já foi integrada em 23/10; a revisão está identificada em [publicação](publicacao_github.md).
+
+## Validação remota da revisão em 12/11/2026
+
+O [PR #6](https://github.com/franciscocostadev/fintech-guard/pull/6) executou a suíte no commit `8bdec521d44e63defd5a6951f00f230c0dff4cf1`.
+Resultado: **95 passed, 14 warnings in 22.40s**, com o job `security-tests` aprovado.
+[Execução 43149334149](https://github.com/franciscocostadev/fintech-guard/actions/runs/43149334149) · [Registro](revisao_rubricas_20261112/ci-pr6.json).
+Essa execução não reexecuta o notebook nem o scan ZAP. As evidências do notebook e da
+validação HTTP são as de 11/11; os relatórios ZAP permanecem datados de 23/10.
+
+## Histórico preservado
+
+As seções abaixo relatam estados das datas indicadas, não o estado atual de publicação.
+
 Este documento preserva a execução histórica em Linux no GitHub Actions, concluída em
 14/10/2026. A revisão local de 17/10/2026 também foi executada integralmente em Windows, com
 registros próprios em `local_validation/`. As duas execuções são descritas separadamente.

@@ -10,6 +10,26 @@ O repositório reúne a API com os controles OWASP auditados pelo OWASP ZAP e a
 análise exploratória dos dados, organizada por entrega (TP1, TP2 e TP3). Veja
 [Dados e EDA](#dados-e-eda).
 
+## TP3: evidências para avaliação
+
+Revisão disponível no [PR #6](https://github.com/franciscocostadev/fintech-guard/pull/6). A [execução do PR](https://github.com/franciscocostadev/fintech-guard/actions/runs/43149334149)
+aprovou 95 testes no commit `8bdec52`. Confira o estado de integração e os checks da revisão mais recente na página do PR.
+
+O [índice específico do TP3](reports/TP3/README.md) organiza os requisitos e seus arquivos.
+A [conferência das 12 rubricas](reports/TP3/rubricas_TP3.md) identifica os oito itens apontados na avaliação e suas evidências.
+A [revisão do feedback de 11/11/2026](reports/TP3/revisao_feedback.md) diferencia a entrega
+já integrada, as melhorias desta revisão e as pendências antes do TP4.
+
+- [Notebook executado: regressão simples e múltipla, métricas e diagnósticos](notebooks/TP3/security/01_regressao_e_transicao.ipynb).
+- Pergunta de classificação: [Markdown](reports/TP3/pergunta_classificacao.md) e [PDF](reports/TP3/pergunta_classificacao.pdf).
+- [Planejamento T2: TF-IDF, regressão logística e comparação com SVM](reports/TP3/planejamento_T2.md).
+- [95 testes aprovados na revisão local](reports/TP3/revisao_20261111/pytest.txt) e [JUnit](reports/TP3/revisao_20261111/pytest.xml).
+- [OpenAPI obtido por HTTP](reports/TP3/revisao_20261111/openapi.json) e [verificação dos cinco contratos](reports/TP3/revisao_20261111/openapi-validacao.json).
+- [Auditoria de segurança do integrante B](docs/auditoria-final-tp3.md).
+
+**Pendente:** colega adversário, URL/IP autorizada e formalização do escopo/janela do pentest.
+O endereço do repositório e o localhost de validação não substituem a URL da API adversária.
+
 ## Como executar
 
 Requer Python 3.12 ou mais recente.

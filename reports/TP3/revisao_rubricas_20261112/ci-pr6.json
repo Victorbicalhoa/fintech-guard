@@ -1,0 +1,21 @@
+{
+  "recorded_on": "2026-11-12",
+  "repository": "franciscocostadev/fintech-guard",
+  "pull_request": 6,
+  "head_sha": "8bdec521d44e63defd5a6951f00f230c0dff4cf1",
+  "run_id": 43149334149,
+  "run_url": "https://github.com/franciscocostadev/fintech-guard/actions/runs/43149334149",
+  "event": "pull_request",
+  "status": "completed",
+  "conclusion": "success",
+  "job_id": 130954536932,
+  "job_name": "security-tests",
+  "test_command": "pytest tests/ -v --junitxml=pytest-report.xml",
+  "pytest_summary": "95 passed, 14 warnings in 22.40s",
+  "passed": 95,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "warnings": 14,
+  "scope": "Execução do commit 8bdec52. Os commits documentais posteriores têm seus próprios checks; este registro não atribui a eles resultados anteriores."
+}

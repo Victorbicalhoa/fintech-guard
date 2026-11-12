@@ -1,0 +1,245 @@
+{
+  "review_date": "2026-11-11",
+  "status": "passed",
+  "transport": "HTTP em 127.0.0.1, porta efêmera; servidor encerrado ao final",
+  "environment": "development",
+  "health_status": 200,
+  "docs_status": 200,
+  "openapi_status": 200,
+  "openapi_version": "3.1.0",
+  "operation_count": 5,
+  "all_registered_business_routes_documented": true,
+  "all_local_schema_references_resolved": true,
+  "contracts": [
+    {
+      "method": "GET",
+      "path": "/auth/me",
+      "summary": "Usuário logado",
+      "request": {},
+      "parameters": [],
+      "response_200": {
+        "$ref": "#/components/schemas/UserPublic"
+      },
+      "response_fields": [
+        "full_name",
+        "role",
+        "username"
+      ],
+      "documented_statuses": [
+        "200",
+        "401"
+      ],
+      "security": [
+        {
+          "OAuth2Password": []
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/auth/token",
+      "summary": "Gerar token",
+      "request": {
+        "application/x-www-form-urlencoded": {
+          "schema": {
+            "$ref": "#/components/schemas/LoginRequest"
+          },
+          "required": [
+            "username",
+            "password"
+          ],
+          "properties": {
+            "username": {
+              "type": "string",
+              "maxLength": 64,
+              "minLength": 1,
+              "title": "Username"
+            },
+            "password": {
+              "type": "string",
+              "maxLength": 72,
+              "minLength": 1,
+              "title": "Password"
+            },
+            "grant_type": {
+              "type": "string",
+              "const": "password",
+              "title": "Grant Type",
+              "default": "password"
+            },
+            "scope": {
+              "type": "string",
+              "maxLength": 256,
+              "title": "Scope",
+              "default": ""
+            },
+            "client_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Client Id"
+            },
+            "client_secret": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 256
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Client Secret"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "parameters": [],
+      "response_200": {
+        "$ref": "#/components/schemas/Token"
+      },
+      "response_fields": [
+        "access_token",
+        "expires_in",
+        "token_type"
+      ],
+      "documented_statuses": [
+        "200",
+        "401",
+        "422",
+        "429"
+      ],
+      "security": []
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "summary": "Status da API",
+      "request": {},
+      "parameters": [],
+      "response_200": {
+        "$ref": "#/components/schemas/HealthResponse"
+      },
+      "response_fields": [
+        "app",
+        "database",
+        "environment",
+        "status",
+        "version"
+      ],
+      "documented_statuses": [
+        "200"
+      ],
+      "security": []
+    },
+    {
+      "method": "POST",
+      "path": "/predict",
+      "summary": "Classificar mensagem",
+      "request": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/PredictRequest"
+          },
+          "required": [
+            "message"
+          ],
+          "properties": {
+            "message": {
+              "type": "string",
+              "maxLength": 1000,
+              "minLength": 1,
+              "title": "Message",
+              "description": "Mensagem do cliente a ser classificada (1 a 1000 caracteres).",
+              "examples": [
+                "Meu cartão foi bloqueado, como desbloqueio?"
+              ]
+            },
+            "channel": {
+              "$ref": "#/components/schemas/Channel",
+              "description": "Canal de origem do atendimento.",
+              "default": "chat"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "parameters": [],
+      "response_200": {
+        "$ref": "#/components/schemas/PredictResponse"
+      },
+      "response_fields": [
+        "confidence",
+        "detail",
+        "id",
+        "intent",
+        "model_version",
+        "risk_level"
+      ],
+      "documented_statuses": [
+        "200",
+        "401",
+        "422"
+      ],
+      "security": [
+        {
+          "OAuth2Password": []
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/predictions/{prediction_id}",
+      "summary": "Consultar uma predição própria",
+      "request": {},
+      "parameters": [
+        {
+          "name": "prediction_id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "exclusiveMinimum": 0,
+            "description": "ID retornado por `POST /predict`.",
+            "title": "Prediction Id"
+          },
+          "description": "ID retornado por `POST /predict`."
+        }
+      ],
+      "response_200": {
+        "$ref": "#/components/schemas/PredictionPublic"
+      },
+      "response_fields": [
+        "confidence",
+        "created_at",
+        "id",
+        "intent",
+        "risk_level"
+      ],
+      "documented_statuses": [
+        "200",
+        "401",
+        "404",
+        "422"
+      ],
+      "security": [
+        {
+          "OAuth2Password": []
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Conferência de contratos declarados; não é scan de segurança.",
+    "HTML Swagger disponível; renderização visual não foi repetida.",
+    "Não verifica implantação pública, TLS nem API adversária."
+  ]
+}
