@@ -1,25 +1,22 @@
 # Estado de preparação do TP3
 
-Atualização: 18/10/2026.
+Atualização: **12/11/2026**.
 
-## Evidência disponível
+A entrega original de Dados está integrada à main do Francisco desde o merge do PR #3 em
+23/10/2026. O [índice do TP3](README.md) é o ponto de entrada para as evidências.
 
-A versão de 14/10/2026 teve notebook e 47 testes aprovados no runner Linux do GitHub Actions.
-Commit, URL, métricas e limitações estão em `resultado_validacao.md`. As evidências em `ci/`
-registram essa execução histórica. A execução remota não demonstrou funcionamento no
-Windows; a revisão de 17/10 registra sua própria execução local em `local_validation/`.
+A revisão local do feedback aprovou novamente o notebook (sete células, três figuras),
+as seis métricas recalculadas e **95 testes**. /docs e /openapi.json responderam 200 em
+desenvolvimento, com cinco operações documentadas. A API não foi modificada.
 
-## Revisão local
+A construção dos pipelines e o cálculo de R²/RMSE agora estão explícitos nas células.
+O plano T2 detalha a integração futura e preserva a separação entre ameaça no conteúdo
+e intenção de atendimento bancário. Nenhum classificador foi treinado.
 
-Foram aplicados os ajustes de dependências, documentação, apresentação dos maiores erros
-por modelo e consistência das evidências. A revisão executou as sete células e aprovou
-58 testes em um ambiente Windows novo. O PDF de classificação tem duas páginas.
-Os registros estão em `local_validation/` e `resultado_validacao.md`.
+**Faltam:** revisar e integrar o PR da revisão; definir colega adversário e URL/IP;
+registrar autorização e janela de pentest; alinhar o contrato do classificador com o integrante B.
+Essas pendências impedem declarar a preparação adversária concluída.
 
-O documento de classificação distingue ameaça no conteúdo de intenção do cliente e registra
-o recorte de segurança proposto para T2. O plano conjunto ainda exige alinhamento desse
-recorte, identificação do adversário e URL, além das evidências de API e segurança.
+Consulte [revisão do feedback](revisao_feedback.md) e [publicação](publicacao_github.md).
 
-A revisão foi publicada no fork e aprovada no Actions em 18/10, com 58 testes.
-A abertura do PR no upstream depende da conta do usuário; ver [publicação](publicacao_github.md). CI de segurança, proteção de merge, auditoria
-final e disponibilidade da API adversária continuam sob responsabilidade do integrante B.
+A [conferência das rubricas](rubricas_TP3.md) mapeia as oito correções solicitadas.

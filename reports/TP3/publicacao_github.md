@@ -1,32 +1,42 @@
-# Publicação do TP3 - Dados
+# Publicação e integração do TP3
 
-Atualização: 18/10/2026.
+Atualização documental: **12/11/2026**.
 
-## Revisão publicada e testada
-- Fork: [Victorbicalhoa/fintech-guard](https://github.com/Victorbicalhoa/fintech-guard/tree/feat/tp3-dados).
-- Branch: `feat/tp3-dados`.
-- Commit executado: [`ead6000`](https://github.com/Victorbicalhoa/fintech-guard/commit/ead6000d643d6c25236d291174fd99cc52f79536).
-- GitHub Actions: [execução aprovada](https://github.com/Victorbicalhoa/fintech-guard/actions/runs/39137515437), Ubuntu 24.04.
-- **58 testes aprovados**, 14 avisos de depreciação; sete células executadas e três imagens incorporadas.
-- Verificador aprovado: 603 registros, seis classes, divisão 482/121, 363 previsões e seis métricas recalculadas.
-- API, datasets e histórico TP1/TP2 preservados; nenhuma alteração na main do colega.
+## Entrega anterior já integrada
 
-## Evidências arquivadas
-Os registros do runner de 18/10 estão em [ci_20261018/](ci_20261018/), incluindo JUnit,
-logs, ambiente, hash do commit, URL e resultado do verificador. O ZIP baixado teve SHA-256
-`9ed8620db54bb46195aa8d8373bcdddb9f1fa90cc02483e01f5a4ef81c8edd36`, igual ao digest publicado pelo GitHub.
-O notebook executado no runner tem o mesmo código da cópia local; R²/RMSE conferem dentro
-da precisão numérica. O notebook versionado conserva as saídas locais de 17/10.
+- Fork/branch: Victorbicalhoa/fintech-guard, `feat/tp3-dados`.
+- Head da entrega de Dados: `a0cabd21b8f327bee5dd849f607dd08412a237b2`.
+- [PR #3](https://github.com/franciscocostadev/fintech-guard/pull/3): aberto em 18/10 e integrado em **23/10/2026**, às 20h08 (America/Sao_Paulo).
+- Merge: [f0deb02](https://github.com/franciscocostadev/fintech-guard/commit/f0deb02bad2d647c8b714d2c453f0fc1f4c069f5).
+- A main inspecionada em 11/11 está em [2f71cb7](https://github.com/franciscocostadev/fintech-guard/commit/2f71cb77f80a8d1e13f8738d3cd59bd20b67baff) e contém os artefatos de Dados.
+- A main do fork ainda aponta para `0d5ee24`; abrir apenas a página inicial do fork não mostra a entrega da branch de TP3.
 
-`ci/` preserva a execução de 14/10; `local_validation/` preserva a execução Windows de 17/10.
-Os hashes em `local_validation/source_sha256.json` descrevem a revisão publicada no commit
-`ead6000`. A atualização posterior de publicação acrescenta apenas documentação e
-evidências, sem alterar código, dependências ou notebook testados.
+As mensagens históricas de falha 403 se referiam à tentativa automática de abrir o PR.
+O PR foi aberto posteriormente e integrado; aquele bloqueio não é o estado atual da entrega.
 
-## Revisão do integrante B
-O PR ainda não foi aberto: a integração retornou `403 Resource not accessible by integration`
-ao criar a solicitação no upstream, e não havia navegador conectado disponível.
-O [comparativo está pronto](https://github.com/franciscocostadev/fintech-guard/compare/main...Victorbicalhoa:fintech-guard:feat/tp3-dados?expand=1) e a [descrição completa](descricao_pr.md) está preparada.
-Abrir o PR para `franciscocostadev/fintech-guard:main`, usando `Victorbicalhoa:feat/tp3-dados`.
-Não foi realizado merge. A dupla ainda deve alinhar o recorte de classificação; CI de segurança,
-adversário/URL e auditoria final permanecem sob responsabilidade do integrante B.
+## Validação remota
+
+- [Dados no fork, 18/10](https://github.com/Victorbicalhoa/fintech-guard/actions/runs/39140016363):
+  commit `a0cabd2`, notebook e **58 testes aprovados**.
+- [Suíte integrada na main, 23/10](https://github.com/franciscocostadev/fintech-guard/actions/runs/40040833325):
+  commit `2f71cb7`, **95 testes aprovados**, 14 avisos de dependências.
+
+## Revisão do feedback para novo PR
+
+A revisão de 11/11 explicita pipelines e métricas no notebook, organiza os requisitos em um
+índice, atualiza o planejamento e reúne nova validação de notebook, pytest e OpenAPI.
+A revisão segue na branch `fix/tp3-feedback` do fork, baseada na main integrada.
+O [comparativo da revisão](https://github.com/franciscocostadev/fintech-guard/compare/main...Victorbicalhoa:fintech-guard:fix/tp3-feedback)
+identifica os arquivos alterados. O PR #3 permanece como histórico da entrega original.
+Confira o estado de integração e os checks no novo PR antes de entregar ao Moodle.
+
+A revisão do feedback não permite identificar qual commit foi consultado pelo avaliador.
+O repositório informado é o do Francisco; não foram informados data ou snapshot da avaliação.
+
+## Preservação de evidências
+
+`ci/`, `local_validation/` e `ci_20261018/` registram execuções anteriores e permanecem intactos.
+O ZIP de evidências de 18/10 registrado anteriormente possui SHA-256
+`9ed8620db54bb46195aa8d8373bcdddb9f1fa90cc02483e01f5a4ef81c8edd36`.
+A execução nova está em [revisao_20261111/](revisao_20261111/).
+Adversário, URL/IP e autorização continuam pendentes.

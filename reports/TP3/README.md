@@ -1,63 +1,69 @@
-# TP3 — Entrega do integrante A: Dados e IA
+# TP3 — Índice de evidências da entrega
 
-Base upstream: `franciscocostadev/fintech-guard`, commit
-`649f5c43f91f4b2fa0bbdadfb357061175760377`, obtido em 14/10/2026.
-A cópia local TP2 e as evidências anteriores foram preservadas.
+Revisão: **11/11/2026**. Base integrada: [2f71cb7](https://github.com/franciscocostadev/fintech-guard/commit/2f71cb77f80a8d1e13f8738d3cd59bd20b67baff).
+A contribuição de Dados entrou na main pelo [PR #3](https://github.com/franciscocostadev/fintech-guard/pull/3),
+integrado em **23/10/2026**. A segurança foi integrada posteriormente pelo integrante B.
+A revisão de 11/11, conferida em 12/11, segue na branch `fix/tp3-feedback` para revisão por PR.
+Consulte a [conferência das 12 rubricas](rubricas_TP3.md), com a seleção original do Rubricator.
 
-## Evidências
+## Comece por estes arquivos
 
-| Requisito de Dados | Evidência |
-|---|---|
-| Pré-processamento, LinearRegression simples e múltipla | `notebooks/TP3/security/01_regressao_e_transicao.ipynb` e `scripts/tp3_regression.py` |
-| R², RMSE, resíduos e Q-Q plot | Notebook; `regression/metrics.csv`; `regression/predictions.csv`; `figures/` |
-| Limitações da regressão para classificação | Seção 6 do notebook; `pergunta_classificacao.md` |
-| Classes, distribuição e justificativa para ML supervisionado | `pergunta_classificacao.md` e sua versão PDF |
-| Modelo candidato e estratégia de features para T2 | `planejamento_T2.md` |
-| Execução e rastreabilidade | `resultado_validacao.md`; evidências históricas em `ci/` |
+1. [Notebook executado de regressão](../../notebooks/TP3/security/01_regressao_e_transicao.ipynb).
+2. [Pergunta de classificação](pergunta_classificacao.md) e [PDF de duas páginas](pergunta_classificacao.pdf).
+3. [Planejamento T2](planejamento_T2.md).
+4. [Resposta técnica ao feedback e pendências](revisao_feedback.md).
 
-## Reprodução no PowerShell, a partir da raiz
+## Mapa dos requisitos
 
-Com o ambiente virtual criado:
+| Item | Onde conferir | Evidência |
+|---|---|---|
+| Pré-processamento e LinearRegression simples/múltipla | Notebook, seções 2 e 3 | Construção e fit explícitos de SimpleImputer → StandardScaler → LinearRegression; mesmos 482/121 registros |
+| R² e RMSE interpretados | Notebook, seção 4; [metrics.csv](regression/metrics.csv) | Cálculo explícito e comparação com a média do treino |
+| Residual plot e Q-Q plot | Notebook, seção 5; [resíduos](figures/residuos.png) e [Q-Q](figures/qq.png) | Gráficos incorporados com interpretação |
+| Limitações para classificação de intenções | Notebook, seção 6; pergunta de classificação | Saída contínua, classes nominais e redundância entre atributos/alvo |
+| Classes, distribuição e aprendizado supervisionado | [Pergunta de classificação](pergunta_classificacao.md) | 603 mensagens; seis classes; binária principal proposta: 171 benignas/432 ameaças |
+| Modelo candidato e feature engineering | Plano T2, seções 2–5 | TF-IDF + LogisticRegression; comparação com LinearSVC; divisão, métricas e contrato futuro |
+| Pelo menos cinco casos de segurança e aprovação da suíte atual | [pytest.txt](revisao_20261111/pytest.txt), [JUnit](revisao_20261111/pytest.xml) | 95 aprovados, zero falhas/erros/ignorados; 14 avisos de dependências |
+| GitHub Actions | [workflow](../../.github/workflows/security-tests.yml) e [run da main](https://github.com/franciscocostadev/fintech-guard/actions/runs/40040833325) | 95 testes aprovados no commit base; regras de merge documentadas pelo integrante B |
+| Findings Medium/High | [Auditoria final](../../docs/auditoria-final-tp3.md) | Auditoria de 23/10: nenhum pendente; não foi realizado novo ZAP nesta revisão |
+| OpenAPI em execução | [JSON exportado](revisao_20261111/openapi.json) e [validação](revisao_20261111/openapi-validacao.json) | HTTP 200 em /docs e /openapi.json; cinco operações com contratos, referências resolvidas |
+| Adversário e URL/IP | Plano T2, seção 6; auditoria, seção 7 | **PENDENTE**, ainda não definidos pela dupla |
 
-```powershell
-.venv/Scripts/python.exe -m pip install -r requirements-dev.txt
-.venv/Scripts/python.exe -m scripts.execute_tp3_notebook
-.venv/Scripts/python.exe -m pytest tests/ -v -p no:cacheprovider --junitxml=reports/TP3/local_validation/pytest.xml
-.venv/Scripts/python.exe -m scripts.verify_tp3_evidence --test-report reports/TP3/local_validation/pytest.xml --output reports/TP3/local_validation/validation.json
-```
+## Resultados do experimento de regressão
 
-`requirements-dev.txt` reúne as dependências de desenvolvimento e dos testes, incluindo
-scikit-learn. `requirements-tp3-dados.txt` permanece como entrada compatível para a execução
-de Dados e inclui esse mesmo arquivo. Se o ambiente foi instalado com uv e não contém pip,
-usar `uv pip install --python .venv/Scripts/python.exe -r requirements-dev.txt`.
+| Modelo | R² na avaliação | RMSE em caracteres |
+|---|---:|---:|
+| Média do treino | -0,00182 | 372,33 |
+| Simples | 0,99877 | 13,05 |
+| Múltipla | 0,99946 | 8,61 |
 
-O notebook também encontra a raiz quando iniciado na própria pasta. O script contém a
-implementação compartilhada; o notebook apresenta pipelines ajustados, tabelas e interpretações.
-O histórico de bloqueio da extensão nativa do SciPy pelo Windows está registrado em
-`resultado_validacao.md`. O resultado da revisão atual identifica separadamente
-o ambiente e os comandos executados em `local_validation/`.
+O alvo é comprimento do texto; os preditores também descrevem sua extensão.
+O desempenho alto reflete uma relação estrutural e **não mede detecção de fraude**.
+O protocolo original foi preservado; a revisão tornou o código explícito nas células.
+A partição pedagógica já foi examinada e não constitui teste externo do classificador futuro.
 
-## Estado da validação
+## Reprodução a partir da raiz
 
-A execução do GitHub Actions de **14/10/2026** aprovou o notebook daquela revisão e **47 testes**.
-O commit e o resultado estão em [resultado_validacao.md](resultado_validacao.md).
-A revisão local de **17/10/2026** executou o notebook e aprovou **58 testes** em um novo
-ambiente Windows instalado com `requirements-dev.txt`. Os registros próprios estão em
-`local_validation/`; os arquivos de `ci/` preservam a execução original em Linux.
-A revisão foi publicada no fork e aprovada no [GitHub Actions de 18/10/2026](https://github.com/Victorbicalhoa/fintech-guard/actions/runs/39137515437),
-também com 58 testes. Consulte [publicação e revisão do colega](publicacao_github.md).
+~~~powershell
+python -m pip install -r requirements-dev.txt
+python -m scripts.execute_tp3_notebook
+python -m pytest tests/ -v -p no:cacheprovider --junitxml=reports/TP3/revisao_20261111/pytest.xml
+python -m scripts.verify_tp3_evidence --test-report reports/TP3/revisao_20261111/pytest.xml --output reports/TP3/revisao_20261111/validation.json
+python -m scripts.verify_tp3_openapi --output reports/TP3/revisao_20261111
+~~~
 
-## Recorte e passagem ao integrante B
+Use uma nova pasta de evidências ao registrar outra data, para preservar o histórico.
+O verificador OpenAPI sobe apenas uma API local em 127.0.0.1, com chave efêmera e banco vazio,
+e encerra o servidor ao final. Ele valida os contratos declarados; não executa pentest nem
+repete a renderização visual do Swagger no navegador. A captura histórica permanece na auditoria.
 
-O planejamento trata da classificação de **conteúdo benigno versus ameaça**, apoiado no
-dataset de segurança. Esse recorte não equivale a inferir a intenção real do cliente nem a
-rotear pedidos bancários; a adaptação e seu alinhamento pendente estão descritos na pergunta
-de classificação e no plano T2.
+## Histórico e responsabilidades
 
-O workflow de Dados executa no fork e não substitui o CI de segurança da entrega integrada.
-API, workflow de segurança, proteção de merge, auditoria final, OpenAPI e identificação do
-adversário cabem ao integrante B. Executar os testes herdados não conclui a auditoria TP3.
-Os campos pendentes do plano conjunto estão em `planejamento_T2.md`.
+- [Validações anteriores e atual](resultado_validacao.md): 47 testes em 14/10, 58 em 17–18/10 e 95 na versão integrada.
+- [Publicação e merge](publicacao_github.md): origem dos commits e estado desta revisão.
+- [Execução de 11/11](revisao_20261111/execution.json), [ambiente](revisao_20261111/environment.txt) e [hashes](revisao_20261111/sha256.json).
 
-TP1 e TP2 continuam em suas pastas. Os CSVs originais e tratados não são modificados pelo TP3.
-Nenhum classificador foi treinado nesta etapa.
+Integrante A: dados, regressão, pergunta de classificação e planejamento de ML.
+Integrante B: API, CI de segurança, auditoria e disponibilização do alvo.
+Identificação do adversário e autorização precisam ser consolidadas pela dupla.
+Nenhum classificador foi treinado e nenhum ataque adversarial foi realizado nesta revisão.

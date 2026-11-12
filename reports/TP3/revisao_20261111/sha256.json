@@ -1,0 +1,23 @@
+{
+  "README.md": "8e41c696990df90e7d46baf7efc35ed021042a4f02cecb0d9b3f94d1b4891f4b",
+  "notebooks/TP3/security/01_regressao_e_transicao.ipynb": "6f5b5ea0499f250a0f77a2ec84283a201b503abdff2b2e00d7c2b341fd4ffef4",
+  "reports/TP3/README.md": "16ba5bfe674d727f349a9d6b8318755e76427351c68a4fb37dfa48993afe7c6d",
+  "reports/TP3/estado_preparacao.md": "bedfe73dcb5e05f3abb847db2547417aded10b29e3b8ef0a19e81f738a78ca2b",
+  "reports/TP3/planejamento_T2.md": "a6b37201e0b883e655115a2e6d043b6973958a3124ae23c202d0f1ba9617de70",
+  "reports/TP3/publicacao_github.md": "e858c6ce20556bb12dbaa1f2cd6adb1d3dea6a2a7bbd67522ed0f9347adab244",
+  "reports/TP3/resultado_validacao.md": "941b2e12f6aa7c659999e83e5d50df6dd3ee3cf074f6df7f49d3540cfc561a12",
+  "reports/TP3/revisao_20261111/README.md": "292889731957147f9dc05e33b3fa958f44584f107b1d94891f7ce720fec760f0",
+  "reports/TP3/revisao_20261111/environment.txt": "9e60b1aec5c7cbc078b57293b6be75582e5f6a15e9012e0bb72d3ca7ce5c94a3",
+  "reports/TP3/revisao_20261111/execution.json": "0ad9ef9c54a7460602ddcb82c94757cada89c03e08394d3fc1639cb2f5d87a52",
+  "reports/TP3/revisao_20261111/notebook.log": "65c5d8e59e49b4f509c7b248ed074b239690bf747caaa7c2c3559150e49f1495",
+  "reports/TP3/revisao_20261111/openapi-validacao.json": "783a839803d46e090906cc3e4485ab2d8e1c755b38c90dae9f23caa78bdde44d",
+  "reports/TP3/revisao_20261111/openapi.json": "830531b0fb4976ccc9c030e8d30817787b96dc1db7838c87a48a56676e3be046",
+  "reports/TP3/revisao_20261111/pytest.txt": "c651f4a3d8a2337a360b521ff456c024e02fe653d9044d283696904a4f4b00fc",
+  "reports/TP3/revisao_20261111/pytest.xml": "67fc7fcb2003a8f10de6df2417b479527f7a6c7aba2ad88acd1bd0e6e84ba0c1",
+  "reports/TP3/revisao_20261111/validation.json": "d5d7ad8e9e721b31591c53cfcb712ed3cb5d8143789d0c5f013fdb6a5aa6d6bb",
+  "reports/TP3/revisao_20261111/validation.log": "fe6b0c9e19bd40030077055a5760629566aaef0fe765eb19f2d812e5cc410784",
+  "reports/TP3/revisao_feedback.md": "fb8ab56834baedbae97e87372839cca993379a1b6a9edb7a81af36c50c9abf55",
+  "reports/TP3/revisao_rubricas_20261112/ruleset-main.json": "3e2dd2f817fe0705058682ae3c50d5bb385530b46f6375da745332a063837650",
+  "reports/TP3/rubricas_TP3.md": "d539967216dc31e95b057c804eade990a713847a2b64ca6dc0a0b3eb497cffd6",
+  "scripts/verify_tp3_openapi.py": "9d30a8b8018fff3ed62210871e6d1f4968baa92aa79f5849ead03fdbec999f42"
+}
